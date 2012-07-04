@@ -52,7 +52,7 @@
       "nome": "servico_layout",
       "posicao_inicio": 14,
       "posicao_fim": 16,
-      "formato": "alfa",
+      "formato": "num",
       "default": 45
     },
 
