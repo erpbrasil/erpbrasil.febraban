@@ -12,6 +12,9 @@
 
 """
 
+import re
+import string
+
 
 def modulo10(num):
     if not isinstance(num, str):
@@ -57,3 +60,43 @@ def modulo11(num, base=9, r=0):
     if r == 1:
         resto = soma % 11
         return resto
+
+
+def remove_pontuacao(string_value):
+    return re.sub(
+        '[%s]' % re.escape(string.punctuation), '', string_value or ''
+    )
+
+
+def formata_cpf_cnpj(cnpj_cpf):
+    """
+    >>> formata_cpf_cnpj(0)
+    '000.000.000-00'
+
+    >>> formata_cpf_cnpj('00.905.849/0002-95')
+    '00.905.849/0002-95'
+    
+    >>> formata_cpf_cnpj('76.162.730/0001-50')
+    '76.162.730/0001-50'
+    
+    >>> formata_cpf_cnpj('372.448.997-23')
+    '372.448.997-23'
+    
+    >>> formata_cpf_cnpj('000.448.997-23')
+    '000.448.997-23'
+    
+    >>> formata_cpf_cnpj('372.448.997-23')
+    '000.148.997-23'
+    """
+
+    if cnpj_cpf:
+        val = re.sub('[^0-9]', '', cnpj_cpf)
+        val = val.lstrip("0")
+        if len(val) <= 11:
+            val = val.zfill(11)
+            return "%s.%s.%s-%s" % (
+                val[0:3], val[3:6], val[6:9], val[9:11])
+        elif 11 < len(val) <= 14:
+            val = val.zfill(14)
+            return "%s.%s.%s/%s-%s" % (
+                val[0:2], val[2:5], val[5:8], val[8:12], val[12:14])
