@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from ..data import BoletoException
+from ..exceptions import BoletoException
 BANCOS_IMPLEMENTADOS = {
     '001': 'bancodobrasil.BoletoBB',
     '041': 'banrisul.BoletoBanrisul',

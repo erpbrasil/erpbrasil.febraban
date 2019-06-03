@@ -161,7 +161,7 @@ class BoletoHTML(object):
         data_vencimento = boletoDados.data_vencimento
         tpl_data['data_vencimento'] = data_vencimento.strftime('%d/%m/%Y')
 
-        # value em unicode em data.py
+        # value em unicode em boleto.py
         if isinstance(boletoDados.local_pagamento, basestring):
             tpl_data['local_pagamento'] = \
                 boletoDados.local_pagamento.encode('utf-8')

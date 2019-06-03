@@ -3,7 +3,7 @@
     Boleto for Banco do Brasil
 """
 # -*- coding: utf-8 -*-
-from pyboleto.data import Boleto
+from pyboleto.entidades import Boleto
 from pyboleto.custom_property import CustomProperty
 
 
