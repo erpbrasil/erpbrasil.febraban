@@ -33,6 +33,8 @@ def print_boletos(modeladmin, request, queryset):
     )
     response.write(pdf_file)
     return response
+
+
 print_boletos.short_description = u'Imprimir Boletos Selecionados'
 
 
@@ -46,4 +48,6 @@ class BoletoAdmin(admin.ModelAdmin):
     date_hierarchy = 'data_documento'
     list_filter = ('data_vencimento', 'data_documento')
     actions = (print_boletos, )
+
+
 admin.site.register(Boleto, BoletoAdmin)

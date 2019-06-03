@@ -2,7 +2,6 @@
 
 import os
 import re
-import sys
 
 from setuptools import setup, find_packages
 
@@ -19,8 +18,6 @@ def get_version(package):
     return re.search("^__version__ = ['\"]([^'\"]+)['\"]",
                      init_py, re.MULTILINE
                      ).group(1)
-
-
 
 
 setup(

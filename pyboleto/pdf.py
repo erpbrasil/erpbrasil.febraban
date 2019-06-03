@@ -58,8 +58,8 @@ class BoletoPDF(object):
         """Imprime o Recibo do Sacado para modelo de carnê
 
         :param boleto_dados: Objeto com os dados do boleto a ser preenchido.
-            Deve ser subclasse de :class:`pyboleto.data.BoletoData`
-        :type boleto_dados: :class:`pyboleto.data.BoletoData`
+            Deve ser subclasse de :class:`pyboleto.data.Boleto`
+        :type boleto_dados: :class:`pyboleto.data.Boleto`
         :param x: Current X coordinate
         :param y: Current Y coordinate
 
@@ -172,8 +172,8 @@ class BoletoPDF(object):
         """Imprime o Recibo do Sacado para modelo de página inteira
 
         :param boleto_dados: Objeto com os dados do boleto a ser preenchido.
-            Deve ser subclasse de :class:`pyboleto.data.BoletoData`
-        :type boleto_dados: :class:`pyboleto.data.BoletoData`
+            Deve ser subclasse de :class:`pyboleto.data.Boleto`
+        :type boleto_dados: :class:`pyboleto.data.Boleto`
 
         """
 
@@ -343,10 +343,11 @@ class BoletoPDF(object):
 
         # Take care of long field
         sacado0 = boleto_dados.sacado[0]
-        while (stringWidth(sacado0,
-                           self.pdf_canvas._fontname,
-                           self.pdf_canvas._fontsize
-                           ) > 8.4 * cm):
+        while (stringWidth(
+                sacado0,
+                self.pdf_canvas._fontname,
+                self.pdf_canvas._fontsize
+        ) > 8.4 * cm):
 
             # sacado0 = sacado0[:-2] + u'\u2026'
             sacado0 = sacado0[:-4] + u'...'
@@ -426,8 +427,8 @@ class BoletoPDF(object):
         """Imprime o Recibo do Caixa
 
         :param boleto_dados: Objeto com os dados do boleto a ser preenchido.
-            Deve ser subclasse de :class:`pyboleto.data.BoletoData`
-        :type boleto_dados: :class:`pyboleto.data.BoletoData`
+            Deve ser subclasse de :class:`pyboleto.data.Boleto`
+        :type boleto_dados: :class:`pyboleto.data.Boleto`
 
         """
         self.pdf_canvas.saveState()
@@ -762,11 +763,11 @@ class BoletoPDF(object):
         """Imprime um boleto tipo carnê com 2 boletos por página.
 
         :param boletoDados1: Objeto com os dados do boleto a ser preenchido.
-            Deve ser subclasse de :class:`pyboleto.data.BoletoData`
+            Deve ser subclasse de :class:`pyboleto.data.Boleto`
         :param boletoDados2: Objeto com os dados do boleto a ser preenchido.
-            Deve ser subclasse de :class:`pyboleto.data.BoletoData`
-        :type boletoDados1: :class:`pyboleto.data.BoletoData`
-        :type boletoDados2: :class:`pyboleto.data.BoletoData`
+            Deve ser subclasse de :class:`pyboleto.data.Boleto`
+        :type boletoDados1: :class:`pyboleto.data.Boleto`
+        :type boletoDados2: :class:`pyboleto.data.Boleto`
 
         """
         y = 5 * mm
@@ -784,8 +785,8 @@ class BoletoPDF(object):
         drawBoletoCarneDuplo.
 
         :param boleto_dados: Objeto com os dados do boleto a ser preenchido.
-            Deve ser subclasse de :class:`pyboleto.data.BoletoData`
-        :type boleto_dados: :class:`pyboleto.data.BoletoData`
+            Deve ser subclasse de :class:`pyboleto.data.Boleto`
+        :type boleto_dados: :class:`pyboleto.data.Boleto`
         """
         x = 15 * mm
         d = self._draw_recibo_sacado_canhoto(boleto_dados, x, y)
@@ -803,8 +804,8 @@ class BoletoPDF(object):
         várias páginas, uma por boleto.
 
         :param boleto_dados: Objeto com os dados do boleto a ser preenchido.
-            Deve ser subclasse de :class:`pyboleto.data.BoletoData`
-        :type boleto_dados: :class:`pyboleto.data.BoletoData`
+            Deve ser subclasse de :class:`pyboleto.data.Boleto`
+        :type boleto_dados: :class:`pyboleto.data.Boleto`
         """
         x = 9 * mm  # margem esquerda
         y = 10 * mm  # margem inferior

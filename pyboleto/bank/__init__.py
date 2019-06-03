@@ -18,8 +18,8 @@ def get_class_for_codigo(banco_codigo):
 
     :param banco_codigo:
     :type banco_codigo: string
-    :return: Classo do Banco subclasse de :class:`pyboleto.data.BoletoData`
-    :rtype: :class:`pyboleto.data.BoletoData`
+    :return: Classo do Banco subclasse de :class:`pyboleto.data.Boleto`
+    :rtype: :class:`pyboleto.data.Boleto`
     """
     try:
         banco = BANCOS_IMPLEMENTADOS[banco_codigo].split('.')

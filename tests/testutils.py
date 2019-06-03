@@ -14,14 +14,13 @@ from xml.etree.ElementTree import fromstring, tostring
 
 import pyboleto
 
-
 try:
     from pyboleto.pdf import BoletoPDF
 except ImportError as err:
     if sys.version_info >= (3,):
         pass  # Reportlab doesn;t support Python3
     else:
-        raise(err)
+        raise (err)
 
 
 def list_recursively(directory, pattern):
@@ -101,11 +100,13 @@ class SourceTest(object):
             if not cls.filename_filter(testname):
                 continue
             testname = testname[:-3].replace('/', '_')
-            name = 'test_%s' % (testname, )
+            name = 'test_%s' % (testname,)
+
             # func = lambda self, r=root, f=filename: self.check_filename(r, f)
 
             def func(self, r=root, f=filename):
                 self.check_filename(r, f)
+
             func.__name__ = name
             setattr(cls, name, func)
 
@@ -147,7 +148,7 @@ def pdftoxml(filename, output):
                          stdout=subprocess.PIPE)
     stdout, stderr = p.communicate()
     if stderr:
-        raise SystemExit("Error while runnig pdftohtml: %s" % (stderr, ))
+        raise SystemExit("Error while runnig pdftohtml: %s" % (stderr,))
 
     root = fromstring(stdout)
     indent(root)

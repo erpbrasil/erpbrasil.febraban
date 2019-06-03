@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from pyboleto.data import BoletoData, CustomProperty
+from pyboleto.data import Boleto
+from pyboleto.custom_property import CustomProperty
 
 
-class BoletoItau(BoletoData):
+class BoletoItau(Boleto):
     '''Implementa Boleto Itaú
 
         Gera Dados necessários para criação de boleto para o banco Itau

@@ -10,62 +10,18 @@
     :license: BSD, see LICENSE for more details.
 
 """
+
 import datetime
 from decimal import Decimal
 
-
-class BoletoException(Exception):
-    """ Exceções para erros no pyboleto"""
-    def __init__(self, message):
-        Exception.__init__(self, message)
-
+from pyboleto.base import modulo10, modulo11
+from pyboleto.custom_property import CustomProperty
+from pyboleto.exceptions import BoletoException
 
 _EPOCH = datetime.date(1997, 10, 7)
 
 
-class CustomProperty(object):
-    """Função para criar propriedades nos boletos
-
-    Cria propriedades com getter, setter e delattr.
-
-    Propriedades criadas com essa função sempre são strings internamente.
-
-    O Setter sempre tentará remover qualquer digito verificador se existir.
-
-    Aceita um numero com ou sem DV e remove o DV caso exista. Então preenxe
-    com zfill até o tamanho adequado. Note que sempre que possível não use DVs
-    ao entrar valores no pyboleto. De preferência o pyboleto vai calcular
-    todos os DVs quando necessário.
-
-    :param name: O nome da propriedade.
-    :type name: string
-    :param length: Tamanho para preencher com '0' na frente.
-    :type length: integer
-
-    """
-    def __init__(self, name, length):
-        self.name = name
-        self.length = length
-        self._instance_state = {}
-
-    def __set__(self, instance, value):
-        if instance is None:
-            raise TypeError("can't modify custom class properties")
-        if '-' in value:
-            values = value.split('-')
-            values[0] = values[0].zfill(self.length)
-            value = '-'.join(values)
-        else:
-            value = value.zfill(self.length)
-        self._instance_state[instance] = value
-
-    def __get__(self, instance, class_):
-        if instance is None:
-            return self
-        return self._instance_state.get(instance, '0' * self.length)
-
-
-class BoletoData(object):
+class Boleto(object):
     """Interface para implementações específicas de bancos
 
     Esta classe geralmente nunca será usada diretamente. Geralmente o usuário
@@ -81,7 +37,7 @@ class BoletoData(object):
 
     eg::
 
-        bData = BoletoData(agencia='123', valor='650')
+        bData = Boleto(agencia='123', valor='650')
         bData.cedente = u'João Ninguém'
         bData.cedente_cidade = u'Rio de Janeiro'
         bData.cedente_uf = u'RJ'
@@ -128,6 +84,27 @@ class BoletoData(object):
 
     """
 
+    nosso_numero = CustomProperty('nosso_numero', 13)
+    """Nosso Número geralmente tem 13 posições
+
+    Algumas subclasses podem alterar isso dependendo das normas do banco
+
+    """
+
+    agencia_cedente = CustomProperty('agencia_cedente', 4)
+    """Agência do Cedente geralmente tem 4 posições
+
+    Algumas subclasses podem alterar isso dependendo das normas do banco
+
+    """
+
+    conta_cedente = CustomProperty('conta_cedente', 7)
+    """Conta do Cedente geralmente tem 7 posições
+
+    Algumas subclasses podem alterar isso dependendo das normas do banco
+
+    """
+
     def __init__(self, **kwargs):
         #        otherwise the printed value might diffent from the value in
         #        the barcode.
@@ -163,7 +140,7 @@ class BoletoData(object):
         self.sacado_bairro = kwargs.pop('sacado_bairro', "")
         self.sacado_cep = kwargs.pop('sacado_cep', "")
         if kwargs:
-            raise TypeError("Paramêtro(s) desconhecido: %r" % (kwargs, ))
+            raise TypeError("Paramêtro(s) desconhecido: %r" % (kwargs,))
         self._cedente_endereco = None
         self._demonstrativo = []
         self._instrucoes = []
@@ -188,11 +165,12 @@ class BoletoData(object):
         """
 
         for attr, length, data_type in [
-                ('codigo_banco', 3, str),
-                ('moeda', 1, str),
-                ('data_vencimento', None, datetime.date),
-                ('valor_documento', -1, str),
-                ('campo_livre', 25, str)]:
+            ('codigo_banco', 3, str),
+            ('moeda', 1, str),
+            ('data_vencimento', None, datetime.date),
+            ('valor_documento', -1, str),
+            ('campo_livre', 25, str),
+        ]:
             value = getattr(self, attr)
             if not isinstance(value, data_type):
                 raise TypeError("%s.%s must be a %s, got %r (type %s)" % (
@@ -263,27 +241,6 @@ class BoletoData(object):
         """
         return self.nosso_numero
 
-    nosso_numero = CustomProperty('nosso_numero', 13)
-    """Nosso Número geralmente tem 13 posições
-
-    Algumas subclasses podem alterar isso dependendo das normas do banco
-
-    """
-
-    agencia_cedente = CustomProperty('agencia_cedente', 4)
-    """Agência do Cedente geralmente tem 4 posições
-
-    Algumas subclasses podem alterar isso dependendo das normas do banco
-
-    """
-
-    conta_cedente = CustomProperty('conta_cedente', 7)
-    """Conta do Cedente geralmente tem 7 posições
-
-    Algumas subclasses podem alterar isso dependendo das normas do banco
-
-    """
-
     def _cedente_endereco_get(self):
         if self._cedente_endereco is None:
             self._cedente_endereco = '%s - %s - %s - %s - %s' % (
@@ -300,6 +257,7 @@ class BoletoData(object):
             raise BoletoException(
                 u'Linha de endereço possui mais que 80 caracteres')
         self._cedente_endereco = endereco
+
     cedente_endereco = property(_cedente_endereco_get, _cedente_endereco_set)
     """Endereço do Cedente com no máximo 80 caracteres"""
 
@@ -312,6 +270,7 @@ class BoletoData(object):
             self._valor = val
         else:
             self._valor = Decimal(str(val))
+
     valor = property(_get_valor, _set_valor)
     """Valor convertido para :class:`Decimal`.
 
@@ -330,6 +289,7 @@ class BoletoData(object):
             self._valor_documento = val
         else:
             self._valor_documento = Decimal(str(val))
+
     valor_documento = property(_get_valor_documento, _set_valor_documento)
     """Valor do Documento convertido para :class:`Decimal`.
 
@@ -353,6 +313,7 @@ class BoletoData(object):
                 raise BoletoException(
                     u'Linha de instruções possui mais que 90 caracteres')
         self._instrucoes = list_inst
+
     instrucoes = property(_instrucoes_get, _instrucoes_set)
     """Instruções para o caixa do banco que recebe o bilhete
 
@@ -377,6 +338,7 @@ class BoletoData(object):
                 raise BoletoException(
                     u'Linha de demonstrativo possui mais que 90 caracteres')
         self._demonstrativo = list_dem
+
     demonstrativo = property(_demonstrativo_get, _demonstrativo_set)
     """Texto que vai impresso no corpo do Recibo do Sacado
 
@@ -411,6 +373,7 @@ class BoletoData(object):
         if len(list_sacado) > 3:
             raise BoletoException(u'Número de linhas do sacado maior que 3')
         self._sacado = list_sacado
+
     sacado = property(_sacado_get, _sacado_set)
     """Campo sacado composto por até 3 linhas.
 
@@ -450,47 +413,9 @@ class BoletoData(object):
                          linha[5:19]])
 
     @staticmethod
-    def modulo10(num):
-        if not isinstance(num, str):
-            raise TypeError
-        soma = 0
-        peso = 2
-        for c in reversed(num):
-            parcial = int(c) * peso
-            if parcial > 9:
-                s = str(parcial)
-                parcial = int(s[0]) + int(s[1])
-            soma += parcial
-            if peso == 2:
-                peso = 1
-            else:
-                peso = 2
-
-        resto10 = soma % 10
-        if resto10 == 0:
-            modulo10 = 0
-        else:
-            modulo10 = 10 - resto10
-
-        return modulo10
+    def modulo11(num, base=9, r=0):
+        return modulo11(num, base, r)
 
     @staticmethod
-    def modulo11(num, base=9, r=0):
-        if not isinstance(num, str):
-            raise TypeError
-        soma = 0
-        fator = 2
-        for c in reversed(num):
-            soma += int(c) * fator
-            if fator == base:
-                fator = 1
-            fator += 1
-        if r == 0:
-            soma = soma * 10
-            digito = soma % 11
-            if digito == 10:
-                digito = 0
-            return digito
-        if r == 1:
-            resto = soma % 11
-            return resto
+    def modulo10(num):
+        return modulo10(num)

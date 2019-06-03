@@ -9,11 +9,18 @@
     :license: BSD, see LICENSE for more details.
 
 """
+
 import os
 import string
 import sys
 import codecs
 import base64
+
+try:
+    basestring
+except NameError:
+    basestring = str
+
 
 from itertools import chain
 if sys.version_info < (3,):
@@ -87,8 +94,8 @@ class BoletoHTML(object):
         """Imprime o Recibo do Sacado para modelo de página inteira
 
         :param boletoDados: Objeto com os dados do boleto a ser preenchido.
-            Deve ser subclasse de :class:`pyboleto.data.BoletoData`
-        :type boletoDados: :class:`pyboleto.data.BoletoData`
+            Deve ser subclasse de :class:`pyboleto.data.Boleto`
+        :type boletoDados: :class:`pyboleto.data.Boleto`
 
         """
         tpl = string.Template(self._load_template('recibo_sacado.html'))
@@ -136,8 +143,8 @@ class BoletoHTML(object):
         """Imprime o Recibo do Caixa
 
         :param boletoDados: Objeto com os dados do boleto a ser preenchido.
-            Deve ser subclasse de :class:`pyboleto.data.BoletoData`
-        :type boletoDados: :class:`pyboleto.data.BoletoData`
+            Deve ser subclasse de :class:`pyboleto.data.Boleto`
+        :type boletoDados: :class:`pyboleto.data.Boleto`
 
         """
         tpl = string.Template(self._load_template('recibo_caixa.html'))
@@ -155,9 +162,9 @@ class BoletoHTML(object):
         tpl_data['data_vencimento'] = data_vencimento.strftime('%d/%m/%Y')
 
         # value em unicode em data.py
-        if isinstance(boletoDados.local_pagamento, unicode):
-            tpl_data['local_pagamento'] = boletoDados.local_pagamento.encode
-            ('utf-8')
+        if isinstance(boletoDados.local_pagamento, basestring):
+            tpl_data['local_pagamento'] = \
+                boletoDados.local_pagamento.encode('utf-8')
         else:
             tpl_data['local_pagamento'] = boletoDados.local_pagamento
         tpl_data['cedente'] = boletoDados.cedente
@@ -201,11 +208,11 @@ class BoletoHTML(object):
         """Imprime um boleto tipo carnê com 2 boletos por página.
 
         :param boletoDados1: Objeto com os dados do boleto a ser preenchido.
-            Deve ser subclasse de :class:`pyboleto.data.BoletoData`
+            Deve ser subclasse de :class:`pyboleto.data.Boleto`
         :param boletoDados2: Objeto com os dados do boleto a ser preenchido.
-            Deve ser subclasse de :class:`pyboleto.data.BoletoData`
-        :type boletoDados1: :class:`pyboleto.data.BoletoData`
-        :type boletoDados2: :class:`pyboleto.data.BoletoData`
+            Deve ser subclasse de :class:`pyboleto.data.Boleto`
+        :type boletoDados1: :class:`pyboleto.data.Boleto`
+        :type boletoDados2: :class:`pyboleto.data.Boleto`
 
         """
         raise NotImplementedError('Em desenvolvimento')
@@ -217,8 +224,8 @@ class BoletoHTML(object):
         várias páginas, uma por boleto.
 
         :param boletoDados: Objeto com os dados do boleto a ser preenchido.
-            Deve ser subclasse de :class:`pyboleto.data.BoletoData`
-        :type boletoDados: :class:`pyboleto.data.BoletoData`
+            Deve ser subclasse de :class:`pyboleto.data.Boleto`
+        :type boletoDados: :class:`pyboleto.data.Boleto`
         """
         self._drawReciboSacado(boletoDados)
         self._drawHorizontalCorteLine()

@@ -33,12 +33,16 @@ class TestBancoBanrisul(BoletoTestCase):
         self.assertEqual(len(self.dados[0].barcode), 44)
 
     def test_codigo_de_barras(self):
-        self.assertEqual(self.dados[0].barcode,
-                         '04198100100000550002111029000150228325634059')
+        self.assertEqual(
+            self.dados[0].barcode,
+            '04198100100000550002111029000150228325634059'
+        )
 
     def test_campo_livre(self):
-        self.assertEqual(self.dados[0].campo_livre,
-                         '2111029000150228325634059')
+        self.assertEqual(
+            self.dados[0].campo_livre,
+            '2111029000150228325634059'
+        )
 
 
 suite = unittest.TestLoader().loadTestsFromTestCase(TestBancoBanrisul)

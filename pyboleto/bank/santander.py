@@ -14,10 +14,11 @@
     :license: BSD, see LICENSE for more details.
 
 """
-from pyboleto.data import BoletoData, CustomProperty
+from pyboleto.data import Boleto
+from pyboleto.custom_property import CustomProperty
 
 
-class BoletoSantander(BoletoData):
+class BoletoSantander(Boleto):
     '''
         Gera Dados necessários para criação de boleto para o banco Santander
     '''

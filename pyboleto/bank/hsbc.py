@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from pyboleto.data import BoletoData, CustomProperty
+from pyboleto.data import Boleto
+from pyboleto.custom_property import CustomProperty
 
 
-class BoletoHsbc(BoletoData):
+class BoletoHsbc(Boleto):
     '''
         Gera Dados necessários para criação de boleto para o banco HSBC
     '''
@@ -43,7 +44,7 @@ class BoletoHsbc(BoletoData):
         return content
 
 
-class BoletoHsbcComRegistro(BoletoData):
+class BoletoHsbcComRegistro(Boleto):
     '''
         Gera Dados necessários para criação de boleto para o banco HSBC
         com registro

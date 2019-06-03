@@ -63,9 +63,9 @@ class Boleto(models.Model):
     def print_pdf_pagina(self, pdf_file):
         from pyboleto import bank
 
-        ClasseBanco = bank.get_class_for_codigo(self.codigo_banco)
+        classe_banco = bank.get_class_for_codigo(self.codigo_banco)
 
-        boleto_dados = ClasseBanco()
+        boleto_dados = classe_banco()
 
         for field in self._meta.get_all_field_names():
             if getattr(self, field):

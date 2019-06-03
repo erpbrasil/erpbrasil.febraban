@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from pyboleto.data import BoletoData, custom_property
+from pyboleto.data import Boleto, custom_property
 
 
-class BoletoSicredi(BoletoData):
+class BoletoSicredi(Boleto):
     '''
         Gera Dados necessários para criação de boleto para o Banco Sicredi
     '''
@@ -119,5 +119,5 @@ class BoletoSicredi(BoletoData):
 
     @property
     def codigo_dv_banco(self):
-        cod = "%s-X" % (self.codigo_banco)
+        cod = "%s-X" % self.codigo_banco
         return cod

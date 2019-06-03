@@ -3,7 +3,9 @@
     Boleto for Banco do Brasil
 """
 # -*- coding: utf-8 -*-
-from pyboleto.data import BoletoData, CustomProperty
+from pyboleto.data import Boleto
+from pyboleto.custom_property import CustomProperty
+
 
 '''
 /*
@@ -23,7 +25,7 @@ from pyboleto.data import BoletoData, CustomProperty
 '''
 
 
-class BoletoBB(BoletoData):
+class BoletoBB(Boleto):
     '''
         Gera Dados necessários para criação de boleto para o Banco do Brasil
     '''
