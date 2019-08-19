@@ -3,6 +3,8 @@ import unittest
 import datetime
 
 from pyboleto.bank.itau import BoletoItau
+from pyboleto.cnab240.tipos import ArquivoCobranca400
+from pyboleto.cnab240.bancos.itau_cobranca_400 import itau_cobranca_400
 
 from .testutils import BoletoTestCase
 
@@ -47,6 +49,12 @@ class TestBancoItau(BoletoTestCase):
     def test_dv_agencia_conta_cedente(self):
         self.assertEqual(self.dados[0].dv_agencia_conta_cedente, 0)
 
+    def test_cnab400(self):
+        arquivo = ArquivoCobranca400(banco=itau_cobranca_400)
+        for id, boleto in enumerate(self.dados):
+            arquivo.incluir_cobranca(boleto)
+            arquivo.trailer.num_seq_registro = id+1
+        print(arquivo.exportar())
 
 suite = unittest.TestLoader().loadTestsFromTestCase(TestBancoItau)
 

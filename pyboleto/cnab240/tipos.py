@@ -4,6 +4,7 @@ import codecs
 import importlib
 from datetime import datetime
 from cnab240 import errors
+import unicodedata
 
 
 class Evento(object):
@@ -468,3 +469,7 @@ class ArquivoCobranca400(object):
         # Adicionar elemento vazio para arquivo terminar com \r\n
         result.append(u'')
         return u'\r\n'.join(result)
+
+    def exportar(self):
+        remessa = unicode(self)
+        return unicodedata.normalize('NFKD', remessa).encode('ascii', 'ignore')
