@@ -224,11 +224,11 @@ class ApiItau(BoletoItau):
             pagador=dict(
                 cpf_cnpj_pagador=limpa_formatacao(self.sacado_documento),
                 nome_pagador=self.sacado_nome.rjust(30, ' ')[:30],
-                logradouro_pagador=self.sacado_endereco,
-                bairro_pagador=self.sacado_bairro,
-                cidade_pagador=self.sacado_cidade,
-                uf_pagador=self.sacado_uf,
-                cep_pagador=limpa_formatacao(self.sacado_cep),
+                logradouro_pagador=self.sacado_endereco[:40],
+                bairro_pagador=self.sacado_bairro[:15],
+                cidade_pagador=self.sacado_cidade[:20],
+                uf_pagador=self.sacado_uf[:2],
+                cep_pagador=limpa_formatacao(self.sacado_cep)[:8],
             ),
 
             # sacador_avalista=dict(
