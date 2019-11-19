@@ -6,13 +6,12 @@ import requests
 
 
 def limpa_formatacao(cnpj_cpf):
-    '''
+    """
     Limpa os caracteres de formatação
     :param cnpj_cpf: CPF ou CNPJ de entrada
     :return: Retorna o CPF ou CNPJ sem formatação
-    '''
-    return cnpj_cpf.replace('.', '').replace('-', '').replace('/', '').replace(
-        ' ', '').replace('(', '').replace(')', '')
+    """
+    return ''.join([c for c in cnpj_cpf if c.isdigit()])
 
 
 class ApiItau(BoletoItau):
