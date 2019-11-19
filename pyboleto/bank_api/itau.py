@@ -14,12 +14,24 @@ def limpa_formatacao(cnpj_cpf):
     return ''.join([c for c in cnpj_cpf if c.isdigit()])
 
 
+def truncate_str(_entry_str, _len):
+    """
+    Método para limitar o tamanho das strings utilizadas na classe
+    :param _entry_str: string de entrada
+    :param _len: o tamanho limite do retorno
+    :return: A string _entry_str limitada pelo tamanho _len1
+    """
+    if isinstance(_entry_str, str):
+        return _entry_str[:_len]
+    return ""
+
+
 class ApiItau(BoletoItau):
-    ''' Implementa a Api do Itaú
+    """ Implementa a Api do Itaú
 
         A partir dos dados fornecidos pelo Boleto do Itaú é feita a conexão
         com o próprio Itaú para o registro de faturas.
-    '''
+    """
 
     @classmethod
     def convert_to(cls, obj, **kwargs):
@@ -218,16 +230,17 @@ class ApiItau(BoletoItau):
                 str(self.dv_agencia_conta_cedente),
             ),
 
-            identificador_titulo_empresa=self.cedente.rjust(25, ' ')[:25],
+            identificador_titulo_empresa=truncate_str(
+                self.cedente.rjust(25, ' '), 25),
 
             pagador=dict(
                 cpf_cnpj_pagador=limpa_formatacao(self.sacado_documento),
-                nome_pagador=self.sacado_nome.rjust(30, ' ')[:30],
-                logradouro_pagador=self.sacado_endereco[:40],
-                bairro_pagador=self.sacado_bairro[:15],
-                cidade_pagador=self.sacado_cidade[:20],
-                uf_pagador=self.sacado_uf[:2],
-                cep_pagador=limpa_formatacao(self.sacado_cep)[:8],
+                nome_pagador=truncate_str(self.sacado_nome.rjust(30, ' '), 30),
+                logradouro_pagador=truncate_str(self.sacado_endereco, 40),
+                bairro_pagador=truncate_str(self.sacado_bairro, 15),
+                cidade_pagador=truncate_str(self.sacado_cidade, 20),
+                uf_pagador=truncate_str(self.sacado_uf, 2),
+                cep_pagador=truncate_str(limpa_formatacao(self.sacado_cep), 8),
             ),
 
             # sacador_avalista=dict(
