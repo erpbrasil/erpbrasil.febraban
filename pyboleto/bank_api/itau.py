@@ -21,7 +21,7 @@ def truncate_str(_entry_str, _len):
     :param _len: o tamanho limite do retorno
     :return: A string _entry_str limitada pelo tamanho _len1
     """
-    if isinstance(_entry_str, str):
+    if isinstance(_entry_str, str) or isinstance(_entry_str, unicode):
         return _entry_str[:_len]
     return ""
 
