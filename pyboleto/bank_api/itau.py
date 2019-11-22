@@ -3,6 +3,12 @@ from pyboleto.bank.itau import BoletoItau
 
 import json
 import requests
+import sys
+
+PY3 = sys.version_info[0] == 3
+
+if PY3:
+    unicode = str
 
 
 def limpa_formatacao(cnpj_cpf):
