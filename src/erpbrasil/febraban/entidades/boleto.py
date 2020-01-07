@@ -14,9 +14,9 @@
 import datetime
 from decimal import Decimal
 
-from pyboleto.base import modulo10, modulo11
-from pyboleto.custom_property import CustomProperty
-from pyboleto.exceptions import BoletoException
+from erpbrasil.febraban.base import modulo10, modulo11
+from erpbrasil.febraban.custom_property import CustomProperty
+from erpbrasil.febraban.exceptions import BoletoException
 
 _EPOCH = datetime.date(1997, 10, 7)
 

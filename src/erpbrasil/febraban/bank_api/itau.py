@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from pyboleto.bank.itau import BoletoItau
+from erpbrasil.febraban.bank.itau import BoletoItau
 
 import json
 import requests

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from pyboleto.entidades import Boleto
+from erpbrasil.febraban.entidades import Boleto
 
 
 class BoletoReal(Boleto):

@@ -9,8 +9,8 @@
     :license: BSD, see LICENSE for more details.
 
 """
-from pyboleto.entidades import Boleto
-from pyboleto.custom_property import CustomProperty
+from erpbrasil.febraban.entidades import Boleto
+from erpbrasil.febraban.custom_property import CustomProperty
 
 
 class BoletoBradesco(Boleto):
