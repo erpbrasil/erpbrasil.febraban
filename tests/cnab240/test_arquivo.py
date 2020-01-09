@@ -13,7 +13,13 @@ from erpbrasil.febraban.cnab240.tipos import Arquivo
 from .data import get_itau_data_from_dict, get_itau_file_remessa, \
                                                                 ARQS_DIRPATH
 
+import sys
+PY3 = sys.version_info[0] == 3
 
+if PY3:
+    unicode = str
+
+    
 class TestCnab240(unittest.TestCase):
 
     def __init__(self, *args, **kwargs):
