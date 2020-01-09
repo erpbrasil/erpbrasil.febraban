@@ -160,7 +160,7 @@ class RegistroBase(object):
             attrs.update({campo.nome: campo})
 
         new_cls = type(cls.__name__, (cls, ), attrs)
-        return super(RegistroBase, cls).__new__(new_cls, **kwargs)
+        return super(RegistroBase, cls).__new__(new_cls)
 
     def __init__(self, **kwargs):
         self.fromdict(kwargs)
