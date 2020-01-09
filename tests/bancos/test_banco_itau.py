@@ -52,7 +52,11 @@ class TestBancoItau(BoletoTestCase):
     def test_cnab400(self):
         arquivo = ArquivoCobranca400(banco=itau_cobranca_400)
         for id, boleto in enumerate(self.dados):
-            arquivo.incluir_cobranca(boleto)
+            boleto_dict = {}
+            for key, val in boleto.__dict__.items():
+                boleto_dict.update({key: val})
+
+            arquivo.incluir_cobranca(**boleto_dict)
             arquivo.trailer.num_seq_registro = id+1
         print(arquivo.exportar())
 
