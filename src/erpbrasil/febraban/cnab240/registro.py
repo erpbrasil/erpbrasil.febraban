@@ -42,7 +42,6 @@ class CampoBase(object):
                 cortar = len(valor) - self.digitos
                 valor = valor[:-(cortar)]
 
-
         elif self.decimais:
             if not isinstance(valor, Decimal):
                 print("{0} - {1}".format(self.nome, self.valor))
@@ -60,7 +59,25 @@ class CampoBase(object):
         else:
             if not isinstance(valor, (int, long)):
                 print("{0} - {1}".format(self.nome, self.valor))
-                raise errors.TipoError(self, valor)
+                try:
+                    # TODO: corrigir implementação TipoError
+                    raise errors.TipoError(self, valor)
+                except:
+                    # TODO: Retirar necessidade except
+                    raise Exception(
+                        '\nCampo: %s'
+                        '\nInicio: %s'
+                        '\nFim: %s'
+                        '\nFormato Esperado: %s'
+                        '\nValor(Formato) Encontrado: %s(%s)' % (
+
+                            self.nome,
+                            self.inicio,
+                            self.fim,
+                            self.formato,
+                            valor,
+                            type(valor).__name__
+                        ))
             if len(str(valor)) > self.digitos:
                 print("{0} - {1}".format(self.nome, self.valor))
                 raise errors.NumDigitosExcedidoError(self, valor)
