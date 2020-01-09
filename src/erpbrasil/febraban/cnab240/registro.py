@@ -141,7 +141,11 @@ def criar_classe_campo(spec):
         'default': spec.get('default'),
     }
 
-    return type(str(nome.encode('utf8')), (CampoBase,), attrs)
+    nome = nome.encode('utf-8')
+
+    if PY3:
+        nome = nome.decode('utf-8')
+    return type(str(nome), (CampoBase,), attrs)
 
 
 class RegistroBase(object):
@@ -228,6 +232,9 @@ class Registros(object):
         campos = OrderedDict()
         attrs = {'_campos_cls': campos}
         cls_name = spec.get('nome').encode('utf8')
+
+        if PY3:
+            cls_name = cls_name.decode('utf8')
 
         campo_specs = spec.get('campos', {})
         for key in sorted(campo_specs.keys()):
