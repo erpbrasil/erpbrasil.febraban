@@ -3,8 +3,15 @@
 import codecs
 import importlib
 from datetime import datetime
-from cnab240 import errors
+from ..cnab240 import errors
 import unicodedata
+
+import sys
+PY3 = sys.version_info[0] == 3
+
+if PY3:
+    from io import IOBase
+    file = IOBase
 
 
 class Evento(object):
@@ -348,7 +355,7 @@ class ArquivoCobranca400(object):
 
         if self.header.arquivo_data_de_geracao is None:
             now = datetime.now()
-            self.header.arquivo_data_de_geracao = int(now.strftime("%d%m%Y"))
+            self.header.arquivo_data_de_geracao = int(now.strftime("%d%m%y"))
 
         # if self.header.arquivo_hora_de_geracao is None:
         #     if now is None:

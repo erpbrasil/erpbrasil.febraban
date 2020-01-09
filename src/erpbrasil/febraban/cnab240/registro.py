@@ -1,6 +1,7 @@
 
 import os
 import json
+import sys
 
 from glob import iglob
 from decimal import Decimal, InvalidOperation
@@ -10,7 +11,13 @@ except ImportError:
     # Fallback for python 2.6
     from ordereddict import OrderedDict
 
-from cnab240 import errors
+from ..cnab240 import errors
+
+PY3 = sys.version_info[0] == 3
+
+if PY3:
+    long = int
+    unicode = str
 
 
 class CampoBase(object):
@@ -26,10 +33,10 @@ class CampoBase(object):
 
         if self.formato == 'alfa':
             if not isinstance(valor, unicode):
-                print "{0} - {1}".format(self.nome, self.valor)
+                print("{0} - {1}".format(self.nome, self.valor))
                 raise errors.TipoError(self, valor)
             if len(valor) > self.digitos:
-                print "{0} - {1}".format(self.nome, self.valor)
+                print("{0} - {1}".format(self.nome, self.valor))
                 # raise errors.NumDigitosExcedidoError(self, valor)
                 # reduz o len(valor)
                 cortar = len(valor) - self.digitos
@@ -38,24 +45,24 @@ class CampoBase(object):
 
         elif self.decimais:
             if not isinstance(valor, Decimal):
-                print "{0} - {1}".format(self.nome, self.valor)
+                print("{0} - {1}".format(self.nome, self.valor))
                 raise errors.TipoError(self, valor)
 
             num_decimais = valor.as_tuple().exponent * -1
             if num_decimais != self.decimais:
-                print "{0} - {1}".format(self.nome, self.valor)
+                print("{0} - {1}".format(self.nome, self.valor))
                 raise errors.NumDecimaisError(self, valor)
 
             if len(str(valor).replace('.', '')) > self.digitos:
-                print "{0} - {1}".format(self.nome, self.valor)
+                print("{0} - {1}".format(self.nome, self.valor))
                 raise errors.NumDigitosExcedidoError(self, valor)
 
         else:
             if not isinstance(valor, (int, long)):
-                print "{0} - {1}".format(self.nome, self.valor)
+                print("{0} - {1}".format(self.nome, self.valor))
                 raise errors.TipoError(self, valor)
             if len(str(valor)) > self.digitos:
-                print "{0} - {1}".format(self.nome, self.valor)
+                print("{0} - {1}".format(self.nome, self.valor))
                 raise errors.NumDigitosExcedidoError(self, valor)
 
         self._valor = valor
@@ -117,7 +124,7 @@ def criar_classe_campo(spec):
         'default': spec.get('default'),
     }
 
-    return type(nome.encode('utf8'), (CampoBase,), attrs)
+    return type(str(nome.encode('utf8')), (CampoBase,), attrs)
 
 
 class RegistroBase(object):
@@ -206,10 +213,10 @@ class Registros(object):
         cls_name = spec.get('nome').encode('utf8')
 
         campo_specs = spec.get('campos', {})
-        for key in sorted(campo_specs.iterkeys()):
+        for key in sorted(campo_specs.keys()):
             Campo = criar_classe_campo(campo_specs[key])
             entrada = {Campo.nome: Campo}
 
             campos.update(entrada)
 
-        return type(cls_name, (RegistroBase, ), attrs)
+        return type(str(cls_name), (RegistroBase, ), attrs)

@@ -2,13 +2,18 @@
 import os
 import importlib
 
-from cnab240.registro import Registros
+from ..registro import Registros
+
+excluded_names = ['__pycache__']
 
 cwd = os.path.abspath(os.path.dirname(__file__))
 nome_bancos = (fname for fname in os.listdir(cwd)
-              if os.path.isdir(os.path.join(cwd, fname)))
+               if os.path.isdir(os.path.join(cwd, fname)))
 
 for nome_banco in nome_bancos:
+    # ignore __pycache__
+    if nome_banco in excluded_names:
+        continue
     banco_module = importlib.import_module('.'.join((__package__, nome_banco)))
     module_path = os.path.abspath(os.path.dirname(banco_module.__file__))
     module_specs_path = os.path.join(module_path, 'specs')

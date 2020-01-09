@@ -1,8 +1,8 @@
 
-from cnab240.tipos import EventoBase
+from erpbrasil.febraban.cnab240.tipos import Evento
 
 
-class EventoInclusao(EventoBase):
+class EventoInclusao(Evento):
     def __init__(self, banco, **kwargs):
         super(EventoInclusao, self).__init__(banco, 1)
         args = self.clean_kwargs(kwargs)

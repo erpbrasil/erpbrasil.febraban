@@ -1,7 +1,7 @@
 
-from cnab240.tipos import LoteBase
+from erpbrasil.febraban.cnab240.tipos import Lote
 
 
-class LoteCobranca(LoteBase):
+class LoteCobranca(Lote):
     HeaderCls = LoteCobranca.banco.registros.HeaderLoteCobranca
     TrailerCls = LoteCobranca.banco.registros.TrailerLoteCobranca
