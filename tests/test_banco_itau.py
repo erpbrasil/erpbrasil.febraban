@@ -2,9 +2,9 @@
 import unittest
 import datetime
 
-from pyboleto.bank.itau import BoletoItau
-from pyboleto.cnab240.tipos import ArquivoCobranca400
-from pyboleto.cnab240.bancos.itau_cobranca_400 import itau_cobranca_400
+from erpbrasil.febraban.bank.itau import BoletoItau
+from erpbrasil.febraban.cnab240.tipos import ArquivoCobranca400
+from erpbrasil.febraban.cnab240.bancos import itau_cobranca_400
 
 from .testutils import BoletoTestCase
 

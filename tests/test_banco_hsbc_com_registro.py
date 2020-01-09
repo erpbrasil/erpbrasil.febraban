@@ -2,7 +2,7 @@
 import unittest
 import datetime
 
-from pyboleto.bank.hsbc import BoletoHsbcComRegistro
+from erpbrasil.febraban.bank.hsbc import BoletoHsbcComRegistro
 
 from .testutils import BoletoTestCase
 
