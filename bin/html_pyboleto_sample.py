@@ -2,18 +2,18 @@
 # -*- coding: utf-8 -*-
 import sys
 
-from pyboleto.bank.bancodobrasil import BoletoBB
-from pyboleto.bank.bradesco import BoletoBradesco
-from pyboleto.bank.caixa import BoletoCaixa
-from pyboleto.bank.itau import BoletoItau
-from pyboleto.bank.real import BoletoReal
-from pyboleto.bank.santander import BoletoSantander
-from pyboleto.html import BoletoHTML
+from erpbrasil.febraban.bank.bancodobrasil import BoletoBB
+from erpbrasil.febraban.bank.bradesco import BoletoBradesco
+from erpbrasil.febraban.bank.caixa import BoletoCaixa
+from erpbrasil.febraban.bank.itau import BoletoItau
+from erpbrasil.febraban.bank.real import BoletoReal
+from erpbrasil.febraban.bank.santander import BoletoSantander
+from erpbrasil.febraban.html import BoletoHTML
 import datetime
 
 
 if sys.version_info < (3,):
-    from pyboleto.pdf import BoletoPDF
+    from erpbrasil.febraban.pdf import BoletoPDF
 
 
 def get_data_bb():
