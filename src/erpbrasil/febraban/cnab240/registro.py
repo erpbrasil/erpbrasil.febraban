@@ -115,6 +115,9 @@ class CampoBase(object):
 
         return u'{0:0{1}d}'.format(self.valor, self.digitos)
 
+    def __str__(self):
+        return self.__unicode__()
+
     def __repr__(self):
         return unicode(self)
 
@@ -213,6 +216,8 @@ class RegistroBase(object):
     def __unicode__(self):
         return ''.join([unicode(campo) for campo in self._campos.values()])
 
+    def __str__(self):
+        return self.__unicode__()
 
 class Registros(object):
     def __init__(self, specs_dirpath):
