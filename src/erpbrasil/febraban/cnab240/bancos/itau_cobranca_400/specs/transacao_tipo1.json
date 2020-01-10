@@ -122,8 +122,8 @@
       "nome": "codigo_banco",
       "posicao_inicio": 140,
       "posicao_fim": 142,
-      "formato": "num",
-      "default": 341
+      "formato": "alfa",
+      "default": "341"
     },
     "21.3P": {
       "nome": "agencia_cobradora",
