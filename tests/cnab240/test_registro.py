@@ -58,7 +58,7 @@ class TestRegistro(unittest.TestCase):
     def test_escrita_campo_num_int(self):
         # aceitar somente inteiros (int e long)
         with self.assertRaises(errors.TipoError):
-            self.header_arquivo.controle_banco = 10.0
+            self.header_arquivo.controle_banco = 10
         with self.assertRaises(errors.TipoError):
             self.header_arquivo.controle_banco = ''
 
