@@ -12,6 +12,7 @@ PY3 = sys.version_info[0] == 3
 if PY3:
     from io import IOBase
     file = IOBase
+    unicode = str
 
 
 class Evento(object):

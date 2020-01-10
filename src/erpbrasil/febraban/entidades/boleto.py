@@ -138,7 +138,7 @@ class Boleto(object):
         self.sacado_uf = kwargs.pop('sacado_uf', "")
         self.sacado_endereco = kwargs.pop('sacado_endereco', "")
         self.sacado_bairro = kwargs.pop('sacado_bairro', "")
-        self.sacado_cep = kwargs.pop('sacado_cep', "")
+        self.sacado_cep = kwargs.pop('sacado_cep', 0)
         if kwargs:
             raise TypeError("Paramêtro(s) desconhecido: %r" % (kwargs,))
         self._cedente_endereco = None
