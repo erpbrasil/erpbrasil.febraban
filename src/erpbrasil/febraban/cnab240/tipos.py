@@ -124,6 +124,9 @@ class Lote(object):
             result.append(unicode(self.trailer))
         return '\r\n'.join(result)
 
+    def __str__(self):
+        return self.__unicode__()
+
     def __len__(self):
         if self.trailer != None and hasattr(self.trailer, 'quantidade_registros'):
             return self.trailer.quantidade_registros
@@ -295,6 +298,9 @@ class Arquivo(object):
         # Adicionar elemento vazio para arquivo terminar com \r\n
         result.append(u'')
         return u'\r\n'.join(result)
+
+    def __str__(self):
+        return self.__unicode__()
 
     def encontrar_lote_pag(self, codigo_servico):
         for lote in self.lotes:
