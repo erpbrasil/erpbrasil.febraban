@@ -78,7 +78,7 @@ def get_itau_data_from_dict():
     dict_cobranca = {
         'cedente_agencia': 4459,
         'cedente_conta': 17600,
-        'cedente_agencia_conta_dv': 6,
+        'cedente_dv_ag_cc': 6,
         'carteira_numero': 109,
         'nosso_numero': 99999999,
         'nosso_numero_dv': 9,
