@@ -84,7 +84,7 @@ class CampoBase(object):
 
         self._valor = valor
 
-    def __unicode__(self):
+    def __str__(self):
 
         if self.valor is None:
             if self.default is not None:
@@ -114,9 +114,6 @@ class CampoBase(object):
                 return self.valor + (u' ' * chars_faltantes)
 
         return u'{0:0{1}d}'.format(self.valor, self.digitos)
-
-    def __str__(self):
-        return self.__unicode__()
 
     def __repr__(self):
         return unicode(self)
@@ -213,11 +210,9 @@ class RegistroBase(object):
             else:
                 campo.valor = valor
 
-    def __unicode__(self):
+    def __str__(self):
         return ''.join([unicode(campo) for campo in self._campos.values()])
 
-    def __str__(self):
-        return self.__unicode__()
 
 class Registros(object):
     def __init__(self, specs_dirpath):

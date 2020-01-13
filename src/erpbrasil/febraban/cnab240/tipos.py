@@ -38,7 +38,7 @@ class Evento(object):
                 return getattr(segmento, name)
         return object.__getattribute__(self, name)
 
-    def __unicode__(self):
+    def __str__(self):
         return u'\r\n'.join(unicode(seg) for seg in self._segmentos)
 
     def __len__(self):
@@ -112,7 +112,7 @@ class Lote(object):
             self.atualizar_codigo_eventos()
 
     # Breakpoint
-    def __unicode__(self):
+    def __str__(self):
         if not self._eventos:
             raise errors.NenhumEventoError()
 
@@ -123,9 +123,6 @@ class Lote(object):
         if self.trailer != None:
             result.append(unicode(self.trailer))
         return '\r\n'.join(result)
-
-    def __str__(self):
-        return self.__unicode__()
 
     def __len__(self):
         if self.trailer != None and hasattr(self.trailer, 'quantidade_registros'):
@@ -287,7 +284,7 @@ class Arquivo(object):
     def escrever(self, file_):
         file_.write(unicode(self).encode('ascii'))
 
-    def __unicode__(self):
+    def __str__(self):
         if not self._lotes:
             raise errors.ArquivoVazioError()
 
@@ -298,9 +295,6 @@ class Arquivo(object):
         # Adicionar elemento vazio para arquivo terminar com \r\n
         result.append(u'')
         return u'\r\n'.join(result)
-
-    def __str__(self):
-        return self.__unicode__()
 
     def encontrar_lote_pag(self, codigo_servico):
         for lote in self.lotes:
@@ -472,7 +466,7 @@ class ArquivoCobranca400(object):
     def escrever(self, file_):
         file_.write(unicode(self).encode('ascii'))
 
-    def __unicode__(self):
+    def __str__(self):
         if not self._lotes:
             raise errors.ArquivoVazioError()
 
