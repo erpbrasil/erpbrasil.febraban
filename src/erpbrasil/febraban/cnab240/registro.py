@@ -89,7 +89,7 @@ class CampoBase(object):
         if self.valor is None:
             if self.default is not None:
                 if self.decimais:
-                    self.valor = Decimal(
+                    result = Decimal(
                         '{0:0.{1}f}'.format(self.default,
                                             self.decimais)
                     )
