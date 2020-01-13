@@ -85,7 +85,7 @@ class CampoBase(object):
         self._valor = valor
 
     def __str__(self):
-
+        result = self.valor
         if self.valor is None:
             if self.default is not None:
                 if self.decimais:
@@ -94,26 +94,26 @@ class CampoBase(object):
                                             self.decimais)
                     )
                 else:
-                    self.valor = self.default
+                    result = self.default
             elif (self.default is None) & (self.valor is None):
                 if self.decimais or self.formato == 'num':
-                    self.valor = 0
+                    result = 0
                 else:
-                    self.valor = u''
+                    result = u''
             else:
                 raise errors.CampoObrigatorioError(self.nome)
 
         if self.formato == 'alfa' or self.decimais:
             if self.decimais:
             # if self.formato == 'num':
-                valor = unicode(self.valor).replace('.', '')
-                chars_faltantes = self.digitos - len(valor)
-                return (u'0' * chars_faltantes) + valor
+                result = unicode(result).replace('.', '')
+                chars_faltantes = self.digitos - len(result)
+                return (u'0' * chars_faltantes) + result
             else:
-                chars_faltantes = self.digitos - len(self.valor)
-                return self.valor + (u' ' * chars_faltantes)
+                chars_faltantes = self.digitos - len(result)
+                return result + (u' ' * chars_faltantes)
 
-        return u'{0:0{1}d}'.format(self.valor, self.digitos)
+        return u'{0:0{1}d}'.format(result, self.digitos)
 
     def __repr__(self):
         return unicode(self)
