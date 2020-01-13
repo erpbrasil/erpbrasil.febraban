@@ -77,9 +77,9 @@ class TestRegistro(unittest.TestCase):
                          u'TRACY TECNOLOGIA LTDA ME')
 
     def test_escrita_campo_alfa(self):
-        # Testa que serao aceitos apenas unicode objects
+        # Testa que serao aceitos apenas str objects
         with self.assertRaises(errors.TipoError):
-            self.header_arquivo.cedente_nome = 'tracy'
+            self.header_arquivo.cedente_nome = b'tracy'
 
         # Testa que strings mais longas que obj.digitos nao serao aceitas
         with self.assertRaises(errors.NumDigitosExcedidoError):
