@@ -59,25 +59,8 @@ class CampoBase(object):
         else:
             if not isinstance(valor, (int, long)):
                 print("{0} - {1}".format(self.nome, self.valor))
-                try:
-                    # TODO: corrigir implementação TipoError
-                    raise errors.TipoError(self, valor)
-                except:
-                    # TODO: Retirar necessidade except
-                    raise Exception(
-                        '\nCampo: %s'
-                        '\nInicio: %s'
-                        '\nFim: %s'
-                        '\nFormato Esperado: %s'
-                        '\nValor(Formato) Encontrado: %s(%s)' % (
+                raise errors.TipoError(self, valor)
 
-                            self.nome,
-                            self.inicio,
-                            self.fim,
-                            self.formato,
-                            valor,
-                            type(valor).__name__
-                        ))
             if len(str(valor)) > self.digitos:
                 print("{0} - {1}".format(self.nome, self.valor))
                 raise errors.NumDigitosExcedidoError(self, valor)
