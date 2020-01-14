@@ -7,9 +7,9 @@ except ImportError:
 import os
 import codecs
 
-from erpbrasil.febraban.cnab240 import errors
-from erpbrasil.febraban.cnab240.bancos import itau
-from erpbrasil.febraban.cnab240.tipos import Arquivo
+from erpbrasil.febraban.cnab import errors
+from erpbrasil.febraban.cnab.bancos import itau
+from erpbrasil.febraban.cnab.tipos import Arquivo
 from .data import get_itau_data_from_dict, get_itau_file_remessa, \
                                                                 ARQS_DIRPATH
 

@@ -5,8 +5,8 @@ except ImportError:
     import unittest
 
 from decimal import Decimal
-from erpbrasil.febraban.cnab240 import errors
-from erpbrasil.febraban.cnab240.bancos import itau
+from erpbrasil.febraban.cnab import errors
+from erpbrasil.febraban.cnab.bancos import itau
 from .data import get_itau_data_from_file
 
 import sys

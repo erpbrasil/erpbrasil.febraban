@@ -11,7 +11,7 @@ except ImportError:
     # Fallback for python 2.6
     from ordereddict import OrderedDict
 
-from ..cnab240 import errors
+from ..cnab import errors
 
 PY3 = sys.version_info[0] == 3
 

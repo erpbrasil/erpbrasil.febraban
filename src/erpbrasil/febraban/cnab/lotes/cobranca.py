@@ -1,5 +1,5 @@
 
-from erpbrasil.febraban.cnab240.tipos import Lote
+from erpbrasil.febraban.cnab.tipos import Lote
 
 
 class LoteCobranca(Lote):

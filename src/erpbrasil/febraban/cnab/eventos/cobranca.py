@@ -1,5 +1,5 @@
 
-from erpbrasil.febraban.cnab240.tipos import Evento
+from erpbrasil.febraban.cnab.tipos import Evento
 
 
 class EventoInclusao(Evento):

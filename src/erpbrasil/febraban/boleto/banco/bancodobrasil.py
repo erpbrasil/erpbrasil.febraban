@@ -4,7 +4,7 @@
 """
 # -*- coding: utf-8 -*-
 from erpbrasil.febraban.entidades import Boleto
-from erpbrasil.febraban.custom_property import CustomProperty
+from erpbrasil.febraban.boleto.custom_property import CustomProperty
 
 
 '''

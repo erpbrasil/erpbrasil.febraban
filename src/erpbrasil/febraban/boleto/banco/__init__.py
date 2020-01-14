@@ -27,7 +27,7 @@ def get_class_for_codigo(banco_codigo):
     except KeyError:
         raise(BoletoException('Este banco não é suportado.'))
 
-    mod = __import__('erpbrasil.febraban.bank.' + banco[0],
+    mod = __import__('erpbrasil.febraban.boleto.banco.' + banco[0],
                      globals(), locals(), [banco[1]])
 
     return getattr(mod, banco[1])

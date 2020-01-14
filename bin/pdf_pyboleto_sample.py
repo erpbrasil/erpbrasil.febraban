@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import erpbrasil.febraban
-from erpbrasil.febraban.bank.real import BoletoReal
-from erpbrasil.febraban.bank.bradesco import BoletoBradesco
-from erpbrasil.febraban.bank.caixa import BoletoCaixa
-from erpbrasil.febraban.bank.bancodobrasil import BoletoBB
-from erpbrasil.febraban.bank.santander import BoletoSantander
-from erpbrasil.febraban.pdf import BoletoPDF
+from erpbrasil.febraban.boleto.banco.real import BoletoReal
+from erpbrasil.febraban.boleto.banco.bradesco import BoletoBradesco
+from erpbrasil.febraban.boleto.banco.caixa import BoletoCaixa
+from erpbrasil.febraban.boleto.banco.bancodobrasil import BoletoBB
+from erpbrasil.febraban.boleto.banco.santander import BoletoSantander
+from erpbrasil.febraban.boleto.pdf import BoletoPDF
 import datetime
 
 

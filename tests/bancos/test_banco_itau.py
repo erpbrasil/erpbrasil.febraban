@@ -2,9 +2,9 @@
 import unittest
 import datetime
 
-from erpbrasil.febraban.bank.itau import BoletoItau
-from erpbrasil.febraban.cnab240.tipos import ArquivoCobranca400
-from erpbrasil.febraban.cnab240.bancos import itau_cobranca_400
+from erpbrasil.febraban.boleto.banco.itau import BoletoItau
+from erpbrasil.febraban.cnab.tipos import ArquivoCobranca400
+from erpbrasil.febraban.cnab.bancos import itau_cobranca_400
 
 from .testutils import BoletoTestCase
 

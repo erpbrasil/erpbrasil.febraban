@@ -4,8 +4,8 @@ try:
 except ImportError:
     import unittest
 
-from erpbrasil.febraban.cnab240.bancos import itau
-from erpbrasil.febraban.cnab240.tipos import Evento
+from erpbrasil.febraban.cnab.bancos import itau
+from erpbrasil.febraban.cnab.tipos import Evento
 from .data import get_itau_data_from_file
 
 import sys

@@ -7,9 +7,9 @@ except ImportError:
 import os
 import codecs
 
-from erpbrasil.febraban.cnab240 import errors
-from erpbrasil.febraban.cnab240.bancos import itau
-from erpbrasil.febraban.cnab240.tipos import Lote
+from erpbrasil.febraban.cnab import errors
+from erpbrasil.febraban.cnab.bancos import itau
+from erpbrasil.febraban.cnab.tipos import Lote
 from .data import get_itau_data_from_file
 
 import sys

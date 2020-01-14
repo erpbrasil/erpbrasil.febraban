@@ -2,7 +2,7 @@
 import unittest
 import datetime
 
-from erpbrasil.febraban.bank.bancodobrasil import BoletoBB
+from erpbrasil.febraban.boleto.banco.bancodobrasil import BoletoBB
 
 from .testutils import BoletoTestCase
 

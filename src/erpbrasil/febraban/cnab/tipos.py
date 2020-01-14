@@ -3,7 +3,7 @@
 import codecs
 import importlib
 from datetime import datetime
-from ..cnab240 import errors
+from ..cnab import errors
 import unicodedata
 
 import sys

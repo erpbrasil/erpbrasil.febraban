@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from erpbrasil.febraban.bank.itau import BoletoItau
+from erpbrasil.febraban.boleto.banco.itau import BoletoItau
 
 import json
 import requests

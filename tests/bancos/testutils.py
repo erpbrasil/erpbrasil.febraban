@@ -15,7 +15,7 @@ from xml.etree.ElementTree import fromstring, tostring
 import erpbrasil.febraban as erpbrasil_febraban
 
 try:
-    from erpbrasil.febraban.pdf import BoletoPDF
+    from erpbrasil.febraban.boleto.pdf import BoletoPDF
 except ImportError as err:
     if sys.version_info >= (3,):
         pass  # Reportlab doesn;t support Python3
