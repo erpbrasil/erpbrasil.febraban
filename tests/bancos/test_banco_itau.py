@@ -50,15 +50,32 @@ class TestBancoItau(BoletoTestCase):
         self.assertEqual(self.dados[0].dv_agencia_conta_cedente, 0)
 
     def test_cnab400(self):
-        arquivo = ArquivoCobranca400(banco=itau_cobranca_400)
-        for id, boleto in enumerate(self.dados):
-            boleto_dict = {}
-            for key, val in boleto.__dict__.items():
-                boleto_dict.update({key: val})
-
-            arquivo.incluir_cobranca(**boleto_dict)
-            arquivo.trailer.num_seq_registro = id+1
+        arquivo = ArquivoCobranca400(
+            banco=itau_cobranca_400,
+            lista_boletos=self.dados
+        )
+        arquivo.boletos()
+            # boleto_dict = {}
+            # for key, val in boleto.__dict__.items():
+            #     boleto_dict.update({key: val})
+            #
+            # arquivo.incluir_cobranca(**boleto_dict)
+            # arquivo.trailer.num_seq_registro = id + 1
         print(arquivo.exportar())
+
+    # def test_cnab400(self):
+    #     arquivo = ArquivoCobranca400(
+    #         banco=itau_cobranca_400,
+    #         lista_boletos=self.dados
+    #     )
+    #     for id, boleto in enumerate(self.dados):
+    #         boleto_dict = {}
+    #         for key, val in boleto.__dict__.items():
+    #             boleto_dict.update({key: val})
+    #
+    #         arquivo.incluir_cobranca(**boleto_dict)
+    #         arquivo.trailer.num_seq_registro = id+1
+    #     print(arquivo.exportar())
 
 suite = unittest.TestLoader().loadTestsFromTestCase(TestBancoItau)
 

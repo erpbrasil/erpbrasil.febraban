@@ -339,11 +339,13 @@ class Arquivo(object):
 
 class ArquivoCobranca400(object):
 
-    def __init__(self, banco, **kwargs):
+    def __init__(self, banco, lista_boletos=False, **kwargs):
         """Arquivo Cnab400."""
 
         self._lotes = []
         self.banco = banco
+        self.lista_boletos = lista_boletos
+
         arquivo = kwargs.get('arquivo')
         if isinstance(arquivo, (file, codecs.StreamReaderWriter)):
             return self.carregar_retorno(arquivo)
@@ -362,6 +364,27 @@ class ArquivoCobranca400(object):
         #     if now is None:
         #         now = datetime.now()
         #     self.header.arquivo_hora_de_geracao = int(now.strftime("%H%M%S"))
+
+
+    def boletos(self):
+        # 1 eh o codigo de cobranca
+        codigo_evento = 1
+        evento = Evento(self.banco, codigo_evento)
+
+        for boleto in self.lista_boletos:
+
+            trans_tp1 = self.banco.registros.TransacaoTipo1(objeto=boleto)
+            evento.adicionar_segmento(trans_tp1)
+
+            lote_cobranca = self.encontrar_lote(codigo_evento)
+
+            if lote_cobranca is None:
+                header = None
+                trailer = None
+                lote_cobranca = Lote(self.banco, header, trailer)
+                self.adicionar_lote(lote_cobranca)
+
+            lote_cobranca.adicionar_evento(evento)
 
     def carregar_retorno(self, arquivo):
 

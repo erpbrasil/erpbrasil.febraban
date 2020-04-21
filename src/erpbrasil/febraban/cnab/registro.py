@@ -1,4 +1,5 @@
 
+import datetime
 import os
 import json
 import sys
@@ -122,6 +123,8 @@ def criar_classe_campo(spec):
         'formato': spec.get('formato', 'alfa'),
         'decimais': spec.get('decimais', 0),
         'default': spec.get('default'),
+        'data': spec.get('data'),
+        'path_objeto': spec.get('objeto'),
     }
 
     nome = nome.encode('utf-8')
@@ -136,11 +139,14 @@ class RegistroBase(object):
     def __new__(cls, **kwargs):
         campos = OrderedDict()
         attrs = {'_campos': campos}
+        boleto = cls._boleto
 
         for Campo in cls._campos_cls.values():
             campo = Campo()
             campos.update({campo.nome: campo})
             attrs.update({campo.nome: campo})
+            if campo.data and boleto and hasattr(boleto, campo.data):
+                campo.valor = getattr(boleto, campo.data)
 
         new_cls = type(cls.__name__, (cls, ), attrs)
         return super(RegistroBase, cls).__new__(new_cls)
@@ -170,8 +176,19 @@ class RegistroBase(object):
             key.startswith('controle_'),
         ))
 
+        data_values = list(campo.data for campo in self._campos.values())
+        key_values = list(self._campos.keys())
+
+        correlations = dict(zip(key_values, data_values))
+
         for key, value in data_dict.items():
-            if hasattr(self, key) and not ignore_fields(key):
+            if ignore_fields(key):
+                continue
+            if hasattr(self, key):
+                setattr(self, key, value)
+        if data_dict.get('objeto'):
+
+            if key in correlations.values():
                 setattr(self, key, value)
 
     def carregar(self, registro_str):
@@ -198,7 +215,7 @@ class RegistroBase(object):
 
 
 class Registros(object):
-    def __init__(self, specs_dirpath):
+    def __init__(self, specs_dirpath, **kwargs):
         # TODO: Validar spec: nome (deve ser unico para cada registro),
         #   posicao_inicio, posicao_fim, formato (alpha), decimais (0),
         #   default (zeros se numerico ou brancos se alfa)
@@ -209,13 +226,20 @@ class Registros(object):
             spec = json.load(registro_file)
             registro_file.close()
 
-            setattr(self, spec.get('nome'), self.criar_classe_registro(spec))
+            setattr(self, spec.get('nome'), self.criar_classe_registro(
+                spec,
+                **kwargs
+            ))
 
-    def criar_classe_registro(self, spec):
+    def criar_classe_registro(self, spec, **kwargs):
         campos = OrderedDict()
-        attrs = {'_campos_cls': campos}
-        cls_name = spec.get('nome').encode('utf8')
 
+        attrs = {
+            '_boleto': kwargs.get('boleto_obj'),
+            '_campos_cls': campos,
+        }
+
+        cls_name = spec.get('nome').encode('utf8')
         if PY3:
             cls_name = cls_name.decode('utf8')
 
