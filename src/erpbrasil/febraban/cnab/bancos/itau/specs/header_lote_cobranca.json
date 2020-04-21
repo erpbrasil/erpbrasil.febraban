@@ -119,6 +119,7 @@
 
     "16.1": {
       "nome": "cedente_conta",
+      "data": "conta_cedente",
       "posicao_inicio": 67,
       "posicao_fim": 71,
       "formato": "num"

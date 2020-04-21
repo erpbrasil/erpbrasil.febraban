@@ -35,6 +35,7 @@
     },
     "06.1": {
       "nome": "cedente_conta",
+      "data": "conta_cedente",
       "posicao_inicio": 24,
       "posicao_fim": 28,
       "formato": "num"

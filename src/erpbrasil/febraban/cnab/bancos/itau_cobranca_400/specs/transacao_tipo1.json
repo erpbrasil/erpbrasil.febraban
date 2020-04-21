@@ -22,6 +22,7 @@
     },
     "04.3P": {
       "nome": "cedente_agencia",
+      "data": "agencia_cedente",
       "posicao_inicio": 18,
       "posicao_fim": 21,
       "formato": "num"
@@ -35,12 +36,14 @@
     },
     "06.3P": {
       "nome": "cedente_conta",
+      "data": "conta_cedente",
       "posicao_inicio": 24,
       "posicao_fim": 28,
       "formato": "num"
     },
     "07.3P": {
       "nome": "cedente_conta_dv",
+      "data": "codigo_dv_banco()",
       "posicao_inicio": 29,
       "posicao_fim": 29,
       "formato": "num"
@@ -71,12 +74,14 @@
     },
     "12.3P": {
       "nome": "quantidade_moeda",
+      "data": "quantidade",
       "posicao_inicio": 71,
       "posicao_fim": 83,
       "formato": "num"
     },
     "13.3P": {
       "nome": "carteira_numero",
+      "data": "carteira",
       "posicao_inicio": 84,
       "posicao_fim": 86,
       "formato": "num"
@@ -89,6 +94,7 @@
     },
     "15.3P": {
       "nome": "carteira_cod",
+      "data": "carteira",
       "posicao_inicio": 108,
       "posicao_fim": 108,
       "formato": "alfa"
@@ -107,12 +113,14 @@
     },
     "18.3P": {
       "nome": "vencimento_titulo",
+      "data": "data_vencimento",
       "posicao_inicio": 121,
       "posicao_fim": 126,
       "formato": "num"
     },
     "19.3P": {
       "nome": "valor_titulo",
+      "data": "_valor",
       "posicao_inicio": 127,
       "posicao_fim": 139,
       "formato": "num",
@@ -127,24 +135,28 @@
     },
     "21.3P": {
       "nome": "agencia_cobradora",
+      "data": "agencia_cedente",
       "posicao_inicio": 143,
       "posicao_fim": 147,
       "formato": "num"
     },
     "22.3P": {
       "nome": "especie_titulo",
+      "data": "especie",
       "posicao_inicio": 148,
       "posicao_fim": 149,
       "formato": "alfa"
     },
     "23.3P": {
       "nome": "aceite_titulo",
+      "data": "aceite",
       "posicao_inicio": 150,
       "posicao_fim": 150,
       "formato": "alfa"
     },
     "24.3P": {
       "nome": "data_emissao_titulo",
+      "data": "data_documento",
       "posicao_inicio": 151,
       "posicao_fim": 156,
       "formato": "num"

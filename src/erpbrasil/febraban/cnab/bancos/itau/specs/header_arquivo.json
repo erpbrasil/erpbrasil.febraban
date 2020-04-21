@@ -88,6 +88,7 @@
 
     "12.0": {
       "nome": "cedente_conta",
+      "data": "conta_cedente",
       "posicao_inicio": 66,
       "posicao_fim": 70,
       "formato": "num"

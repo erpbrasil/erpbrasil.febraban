@@ -43,6 +43,7 @@
 
     "06.0": {
       "nome": "cedente_agencia",
+      "data": "agencia_cedente",
       "posicao_inicio": 27,
       "posicao_fim": 30,
       "formato": "num"
@@ -58,6 +59,7 @@
 
     "08.0": {
       "nome": "cedente_conta",
+      "data": "conta_cedente",
       "posicao_inicio": 33,
       "posicao_fim": 37,
       "formato": "num"
@@ -79,6 +81,7 @@
 
     "11.0": {
       "nome": "cedente_nome",
+      "data": "cedente",
       "posicao_inicio": 47,
       "posicao_fim": 76,
       "formato": "alfa"
@@ -86,6 +89,7 @@
 
     "12.0": {
       "nome": "codigo_do_banco",
+      "data": "codigo_banco",
       "posicao_inicio": 77,
       "posicao_fim": 79,
       "formato": "alfa",

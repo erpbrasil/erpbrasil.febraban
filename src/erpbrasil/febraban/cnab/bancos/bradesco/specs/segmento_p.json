@@ -70,6 +70,7 @@
 
     "10.3P": {
       "nome": "cedente_conta",
+      "data": "conta_cedente",
       "posicao_inicio": 24,
       "posicao_fim": 35,
       "formato": "num"

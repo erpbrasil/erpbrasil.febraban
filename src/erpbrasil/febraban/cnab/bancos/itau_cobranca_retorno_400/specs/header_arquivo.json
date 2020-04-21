@@ -51,6 +51,7 @@
     },
     "08.0": {
       "nome": "cedente_conta",
+      "data": "conta_cedente",
       "posicao_inicio": 33,
       "posicao_fim": 37,
       "formato": "num"
