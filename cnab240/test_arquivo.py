@@ -44,6 +44,7 @@ class TestCnab240(unittest.TestCase):
         arquivo = Arquivo(itau, arquivo=ret_file)
         ret_file.seek(0)
         self.assertEqual(ret_file.read(), unicode(arquivo))
+        ret_file.close()
 
 if __name__ == '__main__':
     unittest.main()
