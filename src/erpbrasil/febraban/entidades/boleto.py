@@ -147,6 +147,7 @@ class Boleto(object):
         self._sacado = None
         self._valor = None
         self._valor_documento = None
+        self._gera_pdf = True
 
     @property
     def barcode(self):
