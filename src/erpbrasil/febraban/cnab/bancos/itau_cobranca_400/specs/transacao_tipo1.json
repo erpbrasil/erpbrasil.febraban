@@ -1,0 +1,301 @@
+{
+  "nome": "TransacaoTipo1",
+  "campos": {
+    "01.3P": {
+      "nome": "identificacao_registro",
+      "posicao_inicio": 1,
+      "posicao_fim": 1,
+      "formato": "num",
+      "default": 1
+    },
+    "02.3P": {
+      "nome": "cedente_inscricao_tipo",
+      "posicao_inicio": 2,
+      "posicao_fim": 3,
+      "formato": "num"
+    },
+    "03.3P": {
+      "nome": "cedente_inscricao_numero",
+      "posicao_inicio": 4,
+      "posicao_fim": 17,
+      "formato": "num"
+    },
+    "04.3P": {
+      "nome": "cedente_agencia",
+      "data": "agencia_cedente",
+      "posicao_inicio": 18,
+      "posicao_fim": 21,
+      "formato": "num"
+    },
+    "05.3P": {
+      "nome": "zeros",
+      "posicao_inicio": 22,
+      "posicao_fim": 23,
+      "formato": "num",
+      "default": 0
+    },
+    "06.3P": {
+      "nome": "cedente_conta",
+      "data": "conta_cedente",
+      "posicao_inicio": 24,
+      "posicao_fim": 28,
+      "formato": "num"
+    },
+    "07.3P": {
+      "nome": "cedente_conta_dv",
+      "data": "codigo_dv_banco()",
+      "posicao_inicio": 29,
+      "posicao_fim": 29,
+      "formato": "num"
+    },
+    "08.3P": {
+      "nome": "brancos",
+      "posicao_inicio": 30,
+      "posicao_fim": 33,
+      "formato": "alfa"
+    },
+    "09.3P": {
+      "nome": "instrucao",
+      "posicao_inicio": 34,
+      "posicao_fim": 37,
+      "formato": "num"
+    },
+    "10.3P": {
+      "nome": "identificacao_titulo_empresa",
+      "posicao_inicio": 38,
+      "posicao_fim": 62,
+      "formato": "alfa"
+    },
+    "11.3P": {
+      "nome": "nosso_numero",
+      "posicao_inicio": 63,
+      "posicao_fim": 70,
+      "formato": "num"
+    },
+    "12.3P": {
+      "nome": "quantidade_moeda",
+      "data": "quantidade",
+      "posicao_inicio": 71,
+      "posicao_fim": 83,
+      "formato": "num"
+    },
+    "13.3P": {
+      "nome": "carteira_numero",
+      "data": "carteira",
+      "posicao_inicio": 84,
+      "posicao_fim": 86,
+      "formato": "num"
+    },
+    "14.3P": {
+      "nome": "uso_banco",
+      "posicao_inicio": 87,
+      "posicao_fim": 107,
+      "formato": "alfa"
+    },
+    "15.3P": {
+      "nome": "carteira_cod",
+      "data": "carteira",
+      "posicao_inicio": 108,
+      "posicao_fim": 108,
+      "formato": "alfa"
+    },
+    "16.3P": {
+      "nome": "identificacao_ocorrencia",
+      "posicao_inicio": 109,
+      "posicao_fim": 110,
+      "formato": "num"
+    },
+    "17.3P": {
+      "nome": "numero_documento",
+      "posicao_inicio": 111,
+      "posicao_fim": 120,
+      "formato": "alfa"
+    },
+    "18.3P": {
+      "nome": "vencimento_titulo",
+      "data": "data_vencimento",
+      "posicao_inicio": 121,
+      "posicao_fim": 126,
+      "formato": "num"
+    },
+    "19.3P": {
+      "nome": "valor_titulo",
+      "data": "_valor",
+      "posicao_inicio": 127,
+      "posicao_fim": 139,
+      "formato": "num",
+      "decimais": 2
+    },
+    "20.3P": {
+      "nome": "codigo_banco",
+      "posicao_inicio": 140,
+      "posicao_fim": 142,
+      "formato": "alfa",
+      "default": "341"
+    },
+    "21.3P": {
+      "nome": "agencia_cobradora",
+      "data": "agencia_cedente",
+      "posicao_inicio": 143,
+      "posicao_fim": 147,
+      "formato": "num"
+    },
+    "22.3P": {
+      "nome": "especie_titulo",
+      "data": "especie",
+      "posicao_inicio": 148,
+      "posicao_fim": 149,
+      "formato": "alfa"
+    },
+    "23.3P": {
+      "nome": "aceite_titulo",
+      "data": "aceite",
+      "posicao_inicio": 150,
+      "posicao_fim": 150,
+      "formato": "alfa"
+    },
+    "24.3P": {
+      "nome": "data_emissao_titulo",
+      "data": "data_documento",
+      "posicao_inicio": 151,
+      "posicao_fim": 156,
+      "formato": "num"
+    },
+    "25.3P": {
+      "nome": "primeira_instrucao",
+      "posicao_inicio": 157,
+      "posicao_fim": 158,
+      "formato": "num"
+    },
+    "26.3P": {
+      "nome": "segunda_instrucao",
+      "posicao_inicio": 159,
+      "posicao_fim": 160,
+      "formato": "num"
+    },
+    "27.3P": {
+      "nome": "juros_mora_taxa_dia",
+      "posicao_inicio": 161,
+      "posicao_fim": 173,
+      "formato": "num",
+      "decimais": 2
+    },
+    "28.3P": {
+      "nome": "data_limite_desconto",
+      "posicao_inicio": 174,
+      "posicao_fim": 179,
+      "formato": "num"
+    },
+    "29.3P": {
+      "nome": "valor_desconto",
+      "posicao_inicio": 180,
+      "posicao_fim": 192,
+      "formato": "num",
+      "decimais": 2
+    },
+    "30.3P": {
+      "nome": "valor_iof",
+      "posicao_inicio": 193,
+      "posicao_fim": 205,
+      "formato": "num",
+      "decimais": 2
+    },
+    "31.3P": {
+      "nome": "valor_abatimento",
+      "posicao_inicio": 206,
+      "posicao_fim": 218,
+      "formato": "num",
+      "decimais": 2
+    },
+    "32.3P": {
+      "nome": "sacado_inscricao_tipo",
+      "posicao_inicio": 219,
+      "posicao_fim": 220,
+      "formato": "num"
+    },
+    "33.3P": {
+      "nome": "sacado_inscricao_numero",
+      "posicao_inicio": 221,
+      "posicao_fim": 234,
+      "formato": "num"
+    },
+    "34.3P": {
+      "nome": "sacado_nome",
+      "posicao_inicio": 235,
+      "posicao_fim": 264,
+      "formato": "alfa"
+    },
+    "35.3P": {
+      "nome": "brancos2",
+      "posicao_inicio": 265,
+      "posicao_fim": 274,
+      "formato": "alfa"
+    },
+    "36.3P": {
+      "nome": "sacado_endereco",
+      "posicao_inicio": 275,
+      "posicao_fim": 314,
+      "formato": "alfa"
+    },
+    "37.3P": {
+      "nome": "sacado_bairro",
+      "posicao_inicio": 315,
+      "posicao_fim": 326,
+      "formato": "alfa"
+    },
+    "38.3P": {
+      "nome": "sacado_cep",
+      "posicao_inicio": 327,
+      "posicao_fim": 334,
+      "formato": "num"
+    },
+    "39.3P": {
+      "nome": "sacado_cidade",
+      "posicao_inicio": 335,
+      "posicao_fim": 349,
+      "formato": "alfa"
+    },
+    "40.3P": {
+      "nome": "sacado_uf",
+      "posicao_inicio": 350,
+      "posicao_fim": 351,
+      "formato": "alfa"
+    },
+    "41.3P": {
+      "nome": "sacador_avalista",
+      "posicao_inicio": 352,
+      "posicao_fim": 381,
+      "formato": "alfa"
+    },
+    "42.3P": {
+      "nome": "brancos3",
+      "posicao_inicio": 382,
+      "posicao_fim": 385,
+      "formato": "alfa"
+    },
+    "43.3P": {
+      "nome": "juros_mora_data",
+      "posicao_inicio": 386,
+      "posicao_fim": 391,
+      "formato": "num"
+    },
+    "44.3P": {
+      "nome": "prazo",
+      "posicao_inicio": 392,
+      "posicao_fim": 393,
+      "formato": "num"
+    },
+    "45.3P": {
+      "nome": "brancos4",
+      "posicao_inicio": 394,
+      "posicao_fim": 394,
+      "formato": "alfa"
+    },
+    "46.3P": {
+      "nome": "num_seq_registro",
+      "posicao_inicio": 395,
+      "posicao_fim": 400,
+      "formato": "num"
+    }
+  }
+}
